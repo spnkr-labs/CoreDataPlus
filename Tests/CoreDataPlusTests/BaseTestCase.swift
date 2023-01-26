@@ -20,7 +20,7 @@ class BaseTestCase: XCTestCase {
     ///
     /// Also Contains `City`, `Country`, and `Language` objects. These have uniqueness constraints on `id` for `City` and `Country`, and a uniqueness constraint on `langCode` for `Language`.
     lazy var viewContext: NSManagedObjectContext = {
-        let context = DataStore.model.inMemoryPersistentContainer.viewContext
+        let context = TestingDataStore.model.inMemoryPersistentContainer.viewContext
         
         return context
     }()
@@ -31,7 +31,7 @@ class BaseTestCase: XCTestCase {
     ///
     /// Also Contains `City`, `Country`, and `Language` objects. These have uniqueness constraints on `id` for `City` and `Country`, and a uniqueness constraint on `langCode` for `Language`.
     lazy var backgroundContext: NSManagedObjectContext = {
-        let b = DataStore.model.inMemoryPersistentContainer.newBackgroundContext()
+        let b = TestingDataStore.model.inMemoryPersistentContainer.newBackgroundContext()
         b.automaticallyMergesChangesFromParent = true
         b.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
         

@@ -6,22 +6,28 @@
 //
 
 import SwiftUI
+import CoreDataPlus
 
 @main
 struct Example_AppApp: App {
-    let persistenceController = PersistenceController.shared
+    // let persistenceController = PersistenceController.shared
+    let dataStore = DataStore.shared
+    
     @Environment(\.scenePhase) private var phase
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                .environment(\.managedObjectContext, dataStore.viewContext)
+                .onAppear {
+                    dump(DataStore.shared.assignedModelName)
+                }
         }
         .onChange(of: phase) { newPhase in
             switch newPhase {
             case .background:
-                try! persistenceController.container.viewContext.save()
+                try! dataStore.viewContext.save()
             default:
                 break
             }

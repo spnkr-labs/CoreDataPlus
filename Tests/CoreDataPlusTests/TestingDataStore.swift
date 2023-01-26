@@ -2,9 +2,9 @@ import XCTest
 @testable import CoreDataPlus
 import CoreData
 
-class DataStore {
+class TestingDataStore {
     
-    static let model = DataStore(modelName: "Model")
+    static let model = TestingDataStore(modelName: "Model")
     
     private var modelName: String
     private init(modelName: String) {
@@ -33,7 +33,8 @@ class DataStore {
         return container
     }()
     
-    lazy public var persistentContainer: NSPersistentContainer? = {
+    // TODO: remove - not needed
+    lazy private var persistentContainer: NSPersistentContainer? = {
         guard let modelURL = Bundle.module.url(forResource:"Model", withExtension: "momd", subdirectory: "Data Models") else { return  nil }
         guard let model = NSManagedObjectModel(contentsOf: modelURL) else { return nil }
         
