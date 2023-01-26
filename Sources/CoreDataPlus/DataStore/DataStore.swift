@@ -22,6 +22,23 @@ public class Persist {
         persist.dataStore = DataStore.shared
         persist.dataStore.modelName = modelName
     }
+    
+    public class func enable() {
+        let persist = Persist.shared
+        persist.dataStore = DataStore.shared
+    }
+    
+    // Bundle.main.urls(forResourcesWithExtension: "plist", subdirectory: Bundle.main.urls(forResourcesWithExtension: "momd", subdirectory: nil)!.first!.relativePath)!.first!
+    
+    // NSDictionary(contentsOf: Bundle.main.urls(forResourcesWithExtension: "plist", subdirectory: Bundle.main.urls(forResourcesWithExtension: "momd", subdirectory: nil)!.first!.relativePath)!.first!, error: ()).object(forKey: "NSManagedObjectModel_CurrentVersionName")
+    
+    // public class func enable(modelName: String) {
+    //     let persist = Persist.shared
+    //     persist.dataStore = DataStore.shared
+    //     persist.dataStore.modelName = modelName
+    // }
+    
+    // NSManagedObjectModel(contentsOf: Bundle.main.urls(forResourcesWithExtension: "momd", subdirectory: nil)!.first!)!
     // TODO: need this?
     private class func enable2(modelName: String) -> Persist {
         let persist = Persist.shared
@@ -44,8 +61,29 @@ public class DataStore {
     //     DataStore.names = n
     // }
     var persistHandle: Persist?
+    private func guessModelName() -> String? {
+        let momdUrls = Bundle.main.urls(forResourcesWithExtension: "momd", subdirectory: nil) ?? []
+        
+        guard momdUrls.count == 1 else { return nil }
+        
+        return momdUrls.first?.lastPathComponent.replacingOccurrences(of: ".momd", with: "")
+    }
+    
+    @available(*, deprecated, message: "Use guessModelName() instead")
+    private func guessModelNameFromVersionInfoPlist() -> String? {
+        let momdUrl = Bundle.main.urls(forResourcesWithExtension: "momd", subdirectory: nil)
+        
+        guard let momdPath = momdUrl?.first?.relativePath else { return nil }
+        
+        guard let versionInfoPlist = Bundle.main.url(forResource: "VersionInfo", withExtension: "plist", subdirectory: momdPath) else { return nil }
+        
+        guard let currentVersionName = try? NSDictionary(contentsOf: versionInfoPlist, error: ()).object(forKey: "NSManagedObjectModel_CurrentVersionName") as? String else { return nil }
+        
+        return currentVersionName
+    }
+    
     private init() {
-        if let autoModelName = (Bundle.main.infoDictionary as! NSDictionary).value(forKeyPath: "CoreDataPlus.ModelName") as? String {
+        if let autoModelName = guessModelName() {
             modelName = autoModelName
         }
     }
