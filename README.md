@@ -9,11 +9,17 @@ Lightweight Active-record-ish pattern.
 
 👨‍💻 Works with automatic or manual `NSManagedObject` code generation.
 
-# Documentation & Guides
+# Contents
 
-[Go to documentation](https://coredataplus.readme.io/)
-
-***
+- [Installation](#installation)
+- [Example App](#example-app)
+- [Documentation](#documentation)
+    - [Predicate](#predicate)
+    - [`NSManagedObject` Extensions](#nsmanagedobject-extensions)
+- [Automatic Context Management](#automatic-context-management)
+- [Logging](#logging)
+- [Quick Start with SwiftUI](#quick-start-with-swiftui)
+- [Class Reference (beta)](https://spnkr.github.io/CoreDataPlus/documentation/coredataplus/)
 
 # Installation
 
@@ -255,8 +261,8 @@ struct ContentView: View {
 
 
 ## Todo
-- [x] Unit tests
-- [x] Option to disable automatic saving when using `destroyAll`
+- [ ] Unit tests
+- [ ] Option to disable automatic saving when using `destroyAll`
 - [ ] Add docs on `NSPersistentContainer` agnosticity
 - [ ] Have an idea? Open an issue!
 

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BE0885E72984938F002611A1 /* Sweet in Frameworks */ = {isa = PBXBuildFile; productRef = BE0885E62984938F002611A1 /* Sweet */; };
 		BE33D3972964F4F600736CA7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE33D3962964F4F600736CA7 /* AppDelegate.swift */; };
 		BE4859D2297785A20087653D /* CoreDataPlus in Frameworks */ = {isa = PBXBuildFile; productRef = BE4859D1297785A20087653D /* CoreDataPlus */; };
 		BEFA11F929491832001DE330 /* Example_AppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEFA11F829491832001DE330 /* Example_AppApp.swift */; };
@@ -42,6 +43,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE4859D2297785A20087653D /* CoreDataPlus in Frameworks */,
+				BE0885E72984938F002611A1 /* Sweet in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -125,6 +127,7 @@
 			name = "Example App";
 			packageProductDependencies = (
 				BE4859D1297785A20087653D /* CoreDataPlus */,
+				BE0885E62984938F002611A1 /* Sweet */,
 			);
 			productName = "Example App";
 			productReference = BEFA11F529491832001DE330 /* Example App.app */;
@@ -314,7 +317,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"Example App/Preview Content\"";
 				DEVELOPMENT_TEAM = 63P2N3D9XL;
 				ENABLE_PREVIEWS = YES;
@@ -344,7 +347,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"Example App/Preview Content\"";
 				DEVELOPMENT_TEAM = 63P2N3D9XL;
 				ENABLE_PREVIEWS = YES;
@@ -392,6 +395,10 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		BE0885E62984938F002611A1 /* Sweet */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Sweet;
+		};
 		BE4859D1297785A20087653D /* CoreDataPlus */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = CoreDataPlus;

@@ -6,7 +6,7 @@ public class CoreDataPlusLogger {
     var logHandler: (String) -> Void = { _ in }
     
     func log(_ message: String) {
-        logHandler(message)
+        logHandler("🪧 \(message)")
     }
     
     public static func configure(logHandler: @escaping (String) -> Void) {

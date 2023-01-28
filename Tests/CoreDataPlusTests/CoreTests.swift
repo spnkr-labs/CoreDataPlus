@@ -4,6 +4,46 @@ import CoreData
 
 final class CoreTests: BaseTestCase {
     
+    // func testDataStore() throws {
+    //     let d = DataStore.shared
+    //     d.modelName = "Model"
+    //     XCTAssertNotNil(d.viewContext)
+    // }
+    
+    func testPersist() throws {
+        XCTAssertNil(DataStore.shared.assignedModelName)
+        
+        let d = Persist.enable(container: TestingDataStore.model.inMemoryPersistentContainer)
+        
+        XCTAssertNotNil(DataStore.shared.assignedModelName)
+        XCTAssertNotNil(DataStore.shared.persistentContainer)
+    }
+    
+    // TODO: fix this test. there is a circular reference here: `CoreDataPlus.setup(viewContext: DataStore.shared.viewContext`
+    func testPersist2() throws {
+        XCTAssertNotNil(nil, "fix this test. there is a circular reference here: `CoreDataPlus.setup(viewContext: DataStore.shared.viewContext`")
+        // let d = Persist.enable(container: TestingDataStore.model.inMemoryPersistentContainer)
+        //
+        // XCTAssertNil(DataStore.shared.assignedModelName)
+        // XCTAssertNotNil(DataStore.shared.persistentContainer)
+        //
+        // CoreDataPlus.setup(viewContext: DataStore.shared.viewContext, logHandler: { _ in
+        //
+        // })
+        //
+        // let book = Book.findOrCreate(column: "title", value: "My First Novel")
+        // book.id = "123"
+        //
+        // XCTAssertEqual(Book.findButDoNotCreate(id: "123")?.title, "My First Novel")
+    }
+    
+    // func testPersist3() throws {
+    //     let d = Persist.enable(modelName: "kung-fu")
+    //     
+    //     XCTAssertNotNil(DataStore.shared.assignedModelName)
+    //     XCTAssertNotNil(DataStore.shared.viewContext)
+    // }
+    
     func testManagedObjectFindable() throws {
         
         let b = backgroundContext

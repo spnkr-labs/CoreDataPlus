@@ -2,9 +2,9 @@ import Foundation
 import CoreData
 import CoreDataPlus
 
-extension Author: ManagedObjectCountable,
-                ManagedObjectSearchable,
-                ManagedObjectDeletable,
-                ManagedObjectFindOrCreateBy {
-    
-}
+// extension Author: ManagedObjectCountable,
+//                 ManagedObjectSearchable,
+//                 ManagedObjectDeletable,
+//                 ManagedObjectFindOrCreateBy {
+//     
+// }

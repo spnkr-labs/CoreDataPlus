@@ -80,7 +80,15 @@ struct ContentView: View {
                 ToolbarItemGroup(placement: .bottomBar) {
                     
                     Button("Save all", action: {
-                        try! viewContext.save()
+                        let xxx = viewContext
+                        do {
+                            dump(viewContext)
+                            let xxxy = viewContext
+                            try viewContext.save()
+                        } catch {
+                            (Array(xxx.deletedObjects).last as! Book).title = "📙📙📙📙📙📙📙"
+                            dump(error)
+                        }
                     })
                     .buttonStyle(.borderedProminent)
                     
@@ -91,6 +99,7 @@ struct ContentView: View {
                     .foregroundColor(.red)
                     
                     Button("Delete books", action: {
+                        
                         CoreDataPlus.shared.backgroundContext?.perform {
                             Book.destroyAll(using: .background)
                             try! CoreDataPlus.shared.backgroundContext?.save()
@@ -149,12 +158,12 @@ struct ContentView: View {
         Author.destroyAll()
     }
     private func deleteAllBooksAndAuthors() {
-        Author.destroyAll()
-        Book.destroyAll()
+        Author.destroyAll(context: viewContext)
+        Book.destroyAll(context: viewContext)
     }
     
     private func addBook() {
-        let newBook = Book.findOrCreate(id: UUID().uuidString, using: .foreground)
+        let newBook = Book.findOrCreate(id: UUID().uuidString, using: .custom(nsManagedObjectContext: viewContext))
         newBook.title = "Book \(Int.random(in: 1...1000))"
     }
     

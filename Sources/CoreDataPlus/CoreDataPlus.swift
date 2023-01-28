@@ -3,7 +3,49 @@ import Foundation
 import CoreData
 import NotificationCenter
 
+public var DB: CoreDataPlus = CoreDataPlus.shared
+
+
+public class CPD {
+    public var viewContext: NSManagedObjectContext?
+    public var backgroundContext: NSManagedObjectContext?
+    
+    init(container: NSPersistentContainer) {
+        viewContext = container.viewContext
+        backgroundContext = container.newBackgroundContext()
+    }
+    
+    
+}
+
+
+
+extension NSPersistentContainer {
+    
+}
+
+public class Calus {
+    public static let shared = Calus()
+    
+    private init() { }
+}
+
+// why does it need to stick around forever?
+// because
+// 
+// if the view context is bound only to views that use it, it's ok if that vanishes
+//     
+//     background context: must be none or 1. 1 must always be tied to all view contexts
+
+public class Treasured {
+    
+}
+
+// remove all shared?
+
 public class CoreDataPlus {
+    public static let version = "0.5.1"
+    
     public static let shared = CoreDataPlus()
     internal static var config: Config?
     
@@ -56,7 +98,7 @@ public class CoreDataPlus {
                             logHandler: @escaping (String) -> Void) {
         
         if CoreDataPlus.config != nil {
-            raiseError(InternalError.setupAlreadyCalled)
+            CoreDataPlusLogger.shared.log("CoreDataPlus.setup has already been called. Ignoring.")
         }
         
         CoreDataPlusLogger.configure(logHandler: logHandler)
